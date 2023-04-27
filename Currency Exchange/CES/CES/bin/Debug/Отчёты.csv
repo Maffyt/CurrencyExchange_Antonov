@@ -1,0 +1,4 @@
+Number,Date,ID client,Currency (sell),Currency (buy),ID Cashier,Quantity (Sell),Sold,Quantity (Buy),Bought,Cost,Revenue
+2,4/11/2023 12:00:00 AM,1,2,2,2,20,400.0000,3,340.0000,200.0000,-443.0000
+,,,,,,,,,,,
+
