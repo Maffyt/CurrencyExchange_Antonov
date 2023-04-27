@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CurrencyExchangeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="Fullname" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="Passport" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" MaxLength="30" />
+    <Property Name="NumberPhone" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Quantity" Type="nvarchar" MaxLength="20" />
+    <Property Name="PurchaseRate" Type="money" />
+    <Property Name="SellingRate" Type="money" />
+  </EntityType>
+  <EntityType Name="CurrencyExchange">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="CurrencyId (Sell)" Type="int" Nullable="false" />
+    <Property Name="CurrencyId (Buy)" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="QuantitySold" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Sold" Type="money" Nullable="false" />
+    <Property Name="QuantityBought" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Bought" Type="money" Nullable="false" />
+    <Property Name="Cost" Type="money" />
+    <Property Name="Revenue" Type="money" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="Passport" Type="nvarchar" MaxLength="20" />
+    <Property Name="Post" Type="nvarchar" MaxLength="25" />
+    <Property Name="NumberPhone" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="AdminStatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CurrencyExchange_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="CurrencyExchange" Type="Self.CurrencyExchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CurrencyExchange">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CurrencyExchange_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="CurrencyExchange" Type="Self.CurrencyExchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CurrencyExchange">
+        <PropertyRef Name="CurrencyId (Sell)" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CurrencyExchange_Currency1">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="CurrencyExchange" Type="Self.CurrencyExchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CurrencyExchange">
+        <PropertyRef Name="CurrencyId (Buy)" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CurrencyExchange_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="CurrencyExchange" Type="Self.CurrencyExchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CurrencyExchange">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище CurrencyExchangeModelContainer">
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CurrencyExchange" EntityType="Self.CurrencyExchange" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CurrencyExchange_Client" Association="Self.FK_CurrencyExchange_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="CurrencyExchange" EntitySet="CurrencyExchange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CurrencyExchange_Currency" Association="Self.FK_CurrencyExchange_Currency">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="CurrencyExchange" EntitySet="CurrencyExchange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CurrencyExchange_Currency1" Association="Self.FK_CurrencyExchange_Currency1">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="CurrencyExchange" EntitySet="CurrencyExchange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CurrencyExchange_Employee" Association="Self.FK_CurrencyExchange_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="CurrencyExchange" EntitySet="CurrencyExchange" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
