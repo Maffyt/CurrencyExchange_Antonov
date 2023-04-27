@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CES", "CES\CES.csproj", "{9904FF44-34DD-4614-9E20-F98462135F1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9904FF44-34DD-4614-9E20-F98462135F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9904FF44-34DD-4614-9E20-F98462135F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9904FF44-34DD-4614-9E20-F98462135F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9904FF44-34DD-4614-9E20-F98462135F1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {135028FB-BB70-4FAD-B2DF-88E40AD47683}
+	EndGlobalSection
+EndGlobal
